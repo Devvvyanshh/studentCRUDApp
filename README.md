@@ -1,16 +1,131 @@
-# React + Vite
+# Student Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack student CRUD application built with Spring Boot, MySQL, React, Vite, and Bootstrap.
 
-Currently, two official plugins are available:
+The app lets you add, view, search, edit, and delete student records. Each student record stores a name, course, and marks.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+- Backend: Java 17, Spring Boot, Spring Web MVC, Spring Data JPA
+- Database: MySQL
+- Frontend: React, Vite, Bootstrap
+- Build tools: Maven and npm
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Project Structure
 
-## Expanding the ESLint configuration
+```text
+student-management-app/
+├── src/                         # Spring Boot backend
+│   ├── main/java/...             # Controllers, entity, repository
+│   └── main/resources/           # Backend configuration
+├── frontend/                     # React + Vite frontend
+│   ├── src/
+│   └── package.json
+├── pom.xml                       # Maven backend dependencies
+└── README.md
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+- Add new students
+- View all student records
+- Search students by name, course, or marks
+- Edit existing student details
+- Delete student records
+- Display total student count and average marks
+
+## Backend Setup
+
+1. Create a MySQL database:
+
+```sql
+CREATE DATABASE student_demo_db;
+```
+
+2. Update `src/main/resources/application.properties` with your local MySQL credentials:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/student_demo_db
+spring.datasource.username=your_mysql_username
+spring.datasource.password=your_mysql_password
+spring.jpa.hibernate.ddl-auto=update
+```
+
+3. Start the Spring Boot backend:
+
+```bash
+./mvnw spring-boot:run
+```
+
+On Windows PowerShell:
+
+```powershell
+.\mvnw.cmd spring-boot:run
+```
+
+The backend runs on:
+
+```text
+http://localhost:8087
+```
+
+## Frontend Setup
+
+1. Move into the frontend folder:
+
+```bash
+cd frontend
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the Vite development server:
+
+```bash
+npm run dev
+```
+
+The frontend runs on:
+
+```text
+http://localhost:5173
+```
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `GET` | `/students` | Get all students |
+| `POST` | `/students/add` | Add a new student |
+| `PUT` | `/students/edit/{id}` | Update a student |
+| `DELETE` | `/students/{id}` | Delete a student |
+
+Example student JSON:
+
+```json
+{
+  "name": "Aarav Sharma",
+  "course": "Computer Science",
+  "marks": 88
+}
+```
+
+## Build
+
+Build the backend:
+
+```bash
+./mvnw clean package
+```
+
+Build the frontend:
+
+```bash
+cd frontend
+npm run build
+```
+
